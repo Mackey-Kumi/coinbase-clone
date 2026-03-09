@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Coinbase Design Tokens — Tailwind v4 @theme
+   Single source of truth for all brand colors & typography.
+   Extracted from coinbase.com via DevTools, March 2026.
+   ============================================================ */
+@theme {
+  /* Brand Colors */
+  --color-cb-blue:           #0052FF;
+  --color-cb-blue-hover:     #0039B3;
+  --color-cb-black:          #0A0B0D;
+  --color-cb-dark-2:         #282B31;
+  --color-cb-surface-1:      #FFFFFF;
+  --color-cb-surface-2:      #EEF0F3;
+  --color-cb-surface-3:      #F4F4F4;
+  --color-cb-text-primary:   #0A0B0D;
+  --color-cb-text-secondary: #5B616E;
+  --color-cb-text-muted:     #8A919E;
+  --color-cb-green:          #27AD75;
+  --color-cb-red:            #F0616D;
+
+  /* Typography */
+  --font-display: 'CoinbaseDisplay', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans:    'CoinbaseSans',    'Inter', system-ui, -apple-system, sans-serif;
+  --font-body:    'CoinbaseText',    'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Max content width */
+  --width-content: 1228px;
+}
+
+/* Button focus ring reset */
+button:focus-visible {
+  outline: 2px solid #0052FF;
+  outline-offset: 2px;
+}
