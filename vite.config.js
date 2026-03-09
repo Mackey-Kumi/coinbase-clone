@@ -4,7 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 
 // https://vite.dev/config/
-export default defineConfig(({ command }) => ({
+export default defineConfig({
   plugins: [react(), tailwindcss()],
-  base: command === 'build' ? '/coinbase-clone/' : '/',
-}))
+})

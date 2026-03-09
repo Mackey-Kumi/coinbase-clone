@@ -32,7 +32,7 @@ function Layout() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/coinbase-clone">
+    <BrowserRouter>
       <Layout />
     </BrowserRouter>
   );
