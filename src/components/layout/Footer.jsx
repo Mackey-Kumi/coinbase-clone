@@ -40,6 +40,11 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Disclaimer */}
+        <div className="mb-6 p-4 bg-red-100 border border-red-200 rounded-lg text-center text-red-700 text-sm font-semibold">
+          Disclaimer: This is a demo student project. Please do not enter real personal information.
+        </div>
+
         {/* Bottom bar */}
         <div className="border-t border-[#D0D5DD] pt-6 flex flex-wrap items-center justify-between gap-4 text-sm text-[#5B616E]">
           <span>© 2026 Coinbase</span>

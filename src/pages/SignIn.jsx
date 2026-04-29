@@ -66,10 +66,27 @@ function SSOButton({ icon, label }) {
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // No-op for static clone
+    try {
+      const res = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include',
+      });
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = '/profile';
+      } else {
+        setError(data.message || 'Login failed');
+      }
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
   return (
@@ -89,6 +106,21 @@ export default function SignIn() {
             autoComplete="email"
           />
         </label>
+
+        {/* Password label */}
+        <label className="block">
+          <span className="text-[14px] font-medium text-white mb-1.5 block">Password</span>
+          <input
+            type="password"
+            placeholder="Your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full bg-transparent border border-[#3C4049] text-white text-[16px] placeholder-[#5B616E] rounded-xl px-4 py-4 outline-none focus:border-[#0052FF] transition-colors"
+            autoComplete="current-password"
+          />
+          <p className="text-[#F45532] text-xs mt-2 text-center">Demo app – do not use your real password</p>
+        </label>
+        {error && <p className="text-red-500 text-sm">{error}</p>}
 
         {/* Continue button */}
         <button

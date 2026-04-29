@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '../common/Button';
 import CryptoTableRow from '../crypto/CryptoTableRow';
-import { cryptos } from '../../data/cryptoData';
 
 // Explore section — bg #EEF0F3, inner max-width 1228px, padding 64px 24px
 // Dark card: bg #0A0B0D, border-radius 32px, padding 24px
@@ -11,6 +10,28 @@ const TABS = ['Tradable', 'Top gainers', 'New on Coinbase'];
 
 export default function ExploreSection() {
   const [activeTab, setActiveTab] = useState(0);
+  const [cryptos, setCryptos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCryptos = async () => {
+      setLoading(true);
+      try {
+        let endpoint = 'http://localhost:5000/crypto';
+        if (activeTab === 1) endpoint = 'http://localhost:5000/crypto/gainers';
+        if (activeTab === 2) endpoint = 'http://localhost:5000/crypto/new';
+        
+        const res = await fetch(endpoint);
+        const data = await res.json();
+        setCryptos(data);
+      } catch (err) {
+        console.error('Failed to fetch crypto data', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCryptos();
+  }, [activeTab]);
 
   return (
     <section className="bg-[#EEF0F3] w-full">

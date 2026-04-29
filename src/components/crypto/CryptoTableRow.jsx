@@ -1,7 +1,11 @@
 // CryptoTableRow — single row inside the dark Explore table card
 // Extracted specs: icon 40px, name white semibold, ticker gray, price white, change green/red
 export default function CryptoTableRow({ crypto }) {
-  const { name, ticker, price, change, icon } = crypto;
+  const name = crypto.name;
+  const ticker = crypto.ticker || crypto.symbol;
+  const price = crypto.price;
+  const change = crypto.change !== undefined ? crypto.change : crypto.change24h;
+  const icon = crypto.icon || crypto.image;
   const isPositive = change >= 0;
 
   const formatPrice = (p) => {
