@@ -8,8 +8,9 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       try {
-        const res = await fetch('http://localhost:5000/profile', {
+        const res = await fetch(`${API_URL}/profile`, {
           credentials: 'include'
         });
         const data = await res.json();
@@ -52,7 +53,8 @@ export default function Profile() {
         </div>
         <button
           onClick={async () => {
-            await fetch('http://localhost:5000/logout', { method: 'POST', credentials: 'include' });
+            const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+            await fetch(`${API_URL}/logout`, { method: 'POST', credentials: 'include' });
             navigate('/signin');
           }}
           className="w-full mt-8 py-3 bg-[#F45532] text-white text-[16px] font-semibold rounded-full hover:bg-red-600 transition-colors"

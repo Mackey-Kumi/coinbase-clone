@@ -16,10 +16,11 @@ export default function ExploreSection() {
   useEffect(() => {
     const fetchCryptos = async () => {
       setLoading(true);
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       try {
-        let endpoint = 'http://localhost:5000/crypto';
-        if (activeTab === 1) endpoint = 'http://localhost:5000/crypto/gainers';
-        if (activeTab === 2) endpoint = 'http://localhost:5000/crypto/new';
+        let endpoint = `${API_URL}/crypto`;
+        if (activeTab === 1) endpoint = `${API_URL}/crypto/gainers`;
+        if (activeTab === 2) endpoint = `${API_URL}/crypto/new`;
         
         const res = await fetch(endpoint);
         const data = await res.json();
